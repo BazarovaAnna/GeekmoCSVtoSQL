@@ -1,10 +1,9 @@
 import LOMastersInfoSettings from "./LOMastersInfoSettings.js";
 
-export async function importLO() {
+export async function fetchLOMasters() {
     const masterData = await LOMastersInfoSettings.getQueryAll();
     const userIds = masterData.map(elem => elem.id).join(', ');
-    console.log("masterData: ", masterData);
-    console.log("userIds: ", userIds);
+    console.log("masterData: ", masterData.length);
 
-    return userIds;
+    return masterData;
 }

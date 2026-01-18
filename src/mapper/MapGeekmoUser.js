@@ -6,7 +6,7 @@ import { VKToken } from "../consts.js";
  * Делает запрос к VK API батчами по 100 пользователей
  * Если профиль закрыт или не найден, возвращает vk_nickname = "закрыт"
  */
-export async function mapLOPlayerToGeekmoUser(players) {
+export async function mapLOToGeekmoUser(LOUsers) {
   const BATCH_SIZE = 100;
   const result = [];
 
@@ -18,8 +18,8 @@ export async function mapLOPlayerToGeekmoUser(players) {
       .replace(/^@/, "")
       .replace(/\/$/, "");
 
-  for (let i = 0; i < players.length; i += BATCH_SIZE) {
-    const batch = players.slice(i, i + BATCH_SIZE);
+  for (let i = 0; i < LOUsers.length; i += BATCH_SIZE) {
+    const batch = LOUsers.slice(i, i + BATCH_SIZE);
 
     // Собираем user_ids через запятую
     const userIds = batch
@@ -44,8 +44,8 @@ export async function mapLOPlayerToGeekmoUser(players) {
         );
 
         return user
-          ? { vk_id: `id${user.id}`, vk_nickname: user.screen_name || "", name: player.player || "" }
-          : { vk_id: "", vk_nickname: "закрыт", name: player.player || "" };
+          ? { vk_id: `id${user.id}`, vk_nickname: user.screen_name || "", name: player.name || "" }
+          : { vk_id: cleaned, vk_nickname: cleaned, name: player.name || "" };
       });
 
       result.push(...batchResult);

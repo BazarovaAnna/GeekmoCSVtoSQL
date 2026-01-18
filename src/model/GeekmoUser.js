@@ -1,4 +1,5 @@
 import { Model } from 'objection';
+import { Master } from './Master.js';
 
 export class GeekmoUser extends Model {
   static get tableName() {
@@ -22,5 +23,18 @@ export class GeekmoUser extends Model {
     };
   }
 
+  static get relationMappings() {
+      return {
+        // one user -> many Masters entries
+        mastersRef: {
+          relation: Model.HasManyRelation,
+          modelClass: Master,
+          join: {
+            from: 'geekmo_users.vk_id',
+            to: '_masters.vk_id'
+          }
+        },
+      };
+    }
 
 }

@@ -9,7 +9,7 @@ const LOPlayerInfoSettings = new QuerySettings({
 	headrow: 1,
 	fields: {
 		id: "VK",
-		player: "Игрок",
+		name: "Игрок",
 		prio: "Приоритет",
 		adv: "Последняя партия",
 		adv_date: "Дата партии",
@@ -22,7 +22,7 @@ const LOPlayerInfoSettings = new QuerySettings({
 	query: {
 		colByField: { 
 			id: 0,
-			player: 1,
+			name: 1,
 			prio: 2,
 			adv: 3,
 			adv_date: 4,
@@ -34,7 +34,7 @@ const LOPlayerInfoSettings = new QuerySettings({
 		 },
 		fieldByCol: { 
 			0: "id",
-			1: "player",
+			1: "name",
 			2: "prio",
 			3: "adv",
 			4: "adv_date",

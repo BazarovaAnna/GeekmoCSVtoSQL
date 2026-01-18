@@ -1,4 +1,4 @@
-import QuerySettings from '../util/QuerySettings';
+import QuerySettings from '../util/QuerySettings.js';
 import {LOSpreadSheetID, LOMastersSheetID} from '../../consts.js'
 
 const sheetId = LOSpreadSheetID; // LO Geekmo Mirror

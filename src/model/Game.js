@@ -1,4 +1,5 @@
 import { Model } from 'objection';
+import { Mega } from './Mega.js';
 
 export class Game extends Model {
   static get tableName() {
@@ -22,5 +23,17 @@ export class Game extends Model {
     };
   }
 
-
+  static get relationMappings() {
+    return {
+      // one Game -> one Mega
+      megaRef: {
+        relation: Model.BelongsToOneRelation,
+        modelClass: Mega,
+        join: {
+          from: '_games.mega',
+          to: '_megas.mega'
+        }
+      }
+    };
+  }
 }

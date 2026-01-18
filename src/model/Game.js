@@ -1,5 +1,6 @@
 import { Model } from 'objection';
 import { Mega } from './Mega.js';
+import { LOPlayer } from './LOPlayer.js';
 
 export class Game extends Model {
   static get tableName() {
@@ -32,6 +33,15 @@ export class Game extends Model {
         join: {
           from: '_games.mega',
           to: '_megas.mega'
+        }
+      },
+      // one Game -> many LOPlayers
+      loPlayersRef: {
+        relation: Model.HasManyRelation,
+        modelClass: LOPlayer,
+        join: {
+          from: '_games.game_name',
+          to: 'LO_players.game_name'
         }
       }
     };

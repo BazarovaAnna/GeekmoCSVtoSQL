@@ -1,5 +1,6 @@
 import { Model } from 'objection';
 import { Master } from './Master.js';
+import { LOPlayer } from './LOPlayer.js';
 
 export class GeekmoUser extends Model {
   static get tableName() {
@@ -34,6 +35,15 @@ export class GeekmoUser extends Model {
             to: '_masters.vk_id'
           }
         },
+        // one user -> one LOPlayer entries
+        loPlayerRef: {
+          relation: Model.BelongsToOneRelation,
+          modelClass: LOPlayer,
+          join: {
+            from: 'geekmo_users.vk_id',
+            to: 'LO_players.vk_id'
+          }
+        } 
       };
     }
 
